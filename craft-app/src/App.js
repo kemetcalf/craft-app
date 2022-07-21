@@ -11,8 +11,10 @@ function App({ callback }) {
 
 	//addProject handler appends array of projects with new project input; function passed as props to the PlanForm; projects array passed as props to ProjectList
 	const addProject = (projectInfo) => {
-		updateProjects([...projects, { id: uuid(), ...projectInfo }]);
+		updateProjects([...projects, { ...projectInfo, id: uuid() }]);
 	};
+
+	// const ;
 
 	console.log(projects);
 

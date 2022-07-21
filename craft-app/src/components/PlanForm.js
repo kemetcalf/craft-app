@@ -23,7 +23,7 @@ function PlanForm({ addProject }) {
 		e.preventDefault();
 		console.log(projectInfo);
 		addProject(projectInfo);
-		setProjectInfo({ title: "", color: "" });
+		setProjectInfo({ title: "", color: "#E40CF0" });
 	}
 
 	// event listener for new Project object to be written to an array of ProjectRoster

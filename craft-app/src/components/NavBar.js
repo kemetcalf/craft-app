@@ -16,7 +16,7 @@ function NavBar() {
 				sticky="top"
 			>
 				<Container fluid>
-					<Navbar.Brand href="#">WIPit</Navbar.Brand>
+					<Navbar.Brand href="/">WIPit</Navbar.Brand>
 					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
 					<Navbar.Offcanvas
 						id={`offcanvasNavbar-expand-lg`}
@@ -30,8 +30,8 @@ function NavBar() {
 						</Offcanvas.Header>
 						<Offcanvas.Body>
 							<Nav className="justify-content-end flex-grow-1 pe-3">
-								<Nav.Link href="#action1">Home</Nav.Link>
-								<Nav.Link href="#action2">My Projects</Nav.Link>
+								<Nav.Link to="/">Home</Nav.Link>
+								<Nav.Link to="/projectlist">My Projects</Nav.Link>
 								<NavDropdown
 									title="Process"
 									id={`offcanvasNavbarDropdown-expand-lg`}

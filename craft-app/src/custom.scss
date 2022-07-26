@@ -7,8 +7,12 @@ $success:    #79FCF6;
 $info:       #6F2DBD;
 $warning:    #90D936;
 $danger:     #E40CF0;
-$light:      #ffffff    ;
+$light:      #ffffff;
 $dark:       #2E3837;
+
+.accordion-button:not(.collapsed) {
+    $primary: blue,
+};
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';

@@ -1,5 +1,6 @@
 import "./App.scss";
 import uuid from "react-uuid";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "./components/NavBar.js";
 import PlanForm from "./components/PlanForm";
@@ -23,11 +24,23 @@ function App({ callback }) {
 			<NavBar />
 			<h1 className="text-secondary mt-2 ms-3">Welcome to WIPit!</h1>
 			<h5 className="text-info mt-2 ms-5">
-				Let's plan a project! Enter your project details and press submit to
-				begin
+				Let's plan a project! Enter your initial project details and press
+				submit
 			</h5>
-			<PlanForm addProject={addProject} />
-			<ProjectList projects={projects} />
+			<Router>
+				<Routes>
+					<Route
+						exact
+						path="/"
+						element={<PlanForm addProject={addProject} />}
+					></Route>
+					<Route
+						exact
+						path="/projectlist"
+						element={<ProjectList projects={projects} />}
+					></Route>
+				</Routes>
+			</Router>
 		</div>
 	);
 }

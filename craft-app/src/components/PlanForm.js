@@ -11,6 +11,8 @@ function PlanForm({ addProject }) {
 	const [projectInfo, setProjectInfo] = useState({
 		title: "My Project",
 		color: "#E40CF0",
+		files: "",
+		description: "",
 	});
 	// nested inputs to update the DOM and add items to the plan-->useEffect?
 
@@ -23,7 +25,7 @@ function PlanForm({ addProject }) {
 		e.preventDefault();
 		console.log(projectInfo);
 		addProject(projectInfo);
-		setProjectInfo({ title: "", color: "#E40CF0" });
+		setProjectInfo({ title: "", color: "#E40CF0", files: "", description: "" });
 	}
 
 	// event listener for new Project object to be written to an array of ProjectRoster
@@ -52,8 +54,8 @@ function PlanForm({ addProject }) {
 							multiple
 							name="files"
 							placeholder="templates.pdf"
-							// value={projectInfo.files}
-							// onChange={handleChange}
+							value={projectInfo.files}
+							onChange={handleChange}
 						/>
 					</Form.Group>
 				</Col>
@@ -69,8 +71,8 @@ function PlanForm({ addProject }) {
 							type="text"
 							name="description"
 							placeholder="e.g. Adult Link from Ocarina of Time"
-							// value={projectInfo.description}
-							// onChange={handleChange}
+							value={projectInfo.description}
+							onChange={handleChange}
 						/>
 					</Form.Group>
 				</Col>
@@ -93,24 +95,6 @@ function PlanForm({ addProject }) {
 					</Form.Group>
 				</Col>
 			</Row>
-
-			<Col xs={10}>
-				<Row>
-					<Form.Group controlId="addTask">
-						<Form.Label>Add Project Phase</Form.Label>
-						<Form.Control type="text" placeholder="e.g. Hero's Shield" />
-						<Form.Group>
-							<Form.Label>Add Phase Task</Form.Label>
-							<Form.Control
-								type="text"
-								placeholder="e.g. Trace, cut, & heat form EVA panels"
-							/>
-						</Form.Group>
-					</Form.Group>
-				</Row>
-			</Col>
-
-			<Col xs={8}></Col>
 
 			<Button variant="primary" type="submit" className="my-3">
 				Submit

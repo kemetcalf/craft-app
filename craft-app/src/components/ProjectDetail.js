@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 function Project(props) {
-	const { title, color, description, files } = props;
+	const { title, color, description, files } = props.project;
 	// if this.id === id,
 
 	return (

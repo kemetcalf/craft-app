@@ -1,8 +1,6 @@
 import Accordion from "react-bootstrap/Accordion";
 
 function ProjectList({ projects }) {
-	//need to destructure projects into project/props to use in mapped rendering
-
 	return (
 		<div>
 			<Accordion defaultActiveKey={["0"]} alwaysOpen>

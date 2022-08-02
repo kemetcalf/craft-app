@@ -13,10 +13,3 @@ root.render(
 		<App callback={() => console.log("renderered")} />
 	</BrowserRouter>
 );
-
-// ReactDOM.render(
-// 	<React.StrictMode>
-// 		<App />
-// 	</React.StrictMode>,
-// 	document.getElementById("root")
-// );

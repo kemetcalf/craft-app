@@ -3,19 +3,28 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useParams } from "react-router-dom";
 
-function Project(props) {
-	const { title, color, description, files } = props.project;
-	// if this.id === id,
+function ProjectDetail(project) {
+	let { id, title, color, description, files } = project;
+
+	const params = useParams();
+	let projectId = id;
+	console.log("projectId: ", params.projectId);
+	const projectSku = params.projectId;
+
+	// return <p>you are here :)</p>;
 
 	return (
-		<div>
-			<p>Project Home</p>
-			<h3 style={{ color: color }}>{title}</h3>
-			<h5>Pattern/Template Files</h5>
-			<p>{files}</p>
-			<h5>Description</h5>
-			<p>{description}</p>
+		<div className="container">
+			<div className="full-project" key={projectId}>
+				<p>Project Home {projectSku}</p>
+				<h3 style={{ color: { color } }}>{title}</h3>
+				<h5>Pattern/Template Files</h5>
+				<p>{files}</p>
+				<h5>Description</h5>
+				<p>{description}</p>
+			</div>
 
 			<Col xs={10}>
 				<Row>
@@ -40,4 +49,4 @@ function Project(props) {
 	);
 }
 
-export default Project;
+export default ProjectDetail;

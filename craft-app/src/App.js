@@ -1,14 +1,16 @@
 import "./App.scss";
 import uuid from "react-uuid";
-import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import NavBar from "./components/NavBar.js";
 import PlanForm from "./components/PlanForm";
 import ProjectList from "./components/ProjectList";
-import Project from "./components/ProjectDetail";
+import ProjectDetail from "./components/ProjectDetail";
+import PageNotFound from "./components/PageNotFound";
 
 function App({ callback }) {
-	// Array of projects with state update
+	const LOCAL_STORAGE_KEY = "projects";
+	// Array of projects with state
 	const [projects, updateProjects] = useState([]);
 
 	//addProject handler appends array of projects with new project input; function passed as props to the PlanForm; projects array passed as props to ProjectList
@@ -16,9 +18,18 @@ function App({ callback }) {
 		updateProjects([...projects, { ...projectInfo, id: uuid() }]);
 	};
 
-	// const ;
-
 	console.log(projects);
+
+	useEffect(() => {
+		const retrieveProjects = JSON.parse(
+			localStorage.getItem(LOCAL_STORAGE_KEY)
+		);
+		if (retrieveProjects) updateProjects(retrieveProjects);
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(projects));
+	}, [projects]);
 
 	return (
 		<div ref={callback}>
@@ -32,7 +43,7 @@ function App({ callback }) {
 				<Route
 					exact
 					path="/"
-					element={<PlanForm addProject={addProject} />}
+					element={<PlanForm addProject={addProject} projects={projects} />}
 				></Route>
 				<Route
 					exact
@@ -40,15 +51,10 @@ function App({ callback }) {
 					element={<ProjectList projects={projects} />}
 				></Route>
 				<Route
-					exact
-					path={`/projectdetail:${projects.id}`}
-					element={<Project />}
-				></Route>
-				{/* <Route
-					exact
-					path="/"
-					element={
-				></Route> */}
+					path="/project/:projectId"
+					element={<ProjectDetail projects={projects} />}
+				/>
+				<Route exact path="*" element={<PageNotFound />}></Route>
 			</Routes>
 		</div>
 	);

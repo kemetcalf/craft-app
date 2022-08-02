@@ -1,4 +1,5 @@
 import Accordion from "react-bootstrap/Accordion";
+import { Link, Outlet } from "react-router-dom";
 
 function ProjectList({ projects }) {
 	return (
@@ -17,10 +18,12 @@ function ProjectList({ projects }) {
 						<Accordion.Body>
 							<p>{files}</p>
 							<p>{description}</p>
+							<Link to={`/project/${id}`}>Details</Link>
 						</Accordion.Body>
 					</Accordion.Item>
 				))}
 			</Accordion>
+			<Outlet />
 		</div>
 	);
 }

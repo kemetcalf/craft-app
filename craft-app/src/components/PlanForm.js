@@ -3,9 +3,27 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
-import ProjectList from "./ProjectList";
 
-function PlanForm({ addProject }) {
+function ShortList({ projects }) {
+	console.log(projects);
+	if (projects) {
+		console.log("ShortList render");
+		return (
+			<div className="short-list-container">
+				{projects.map(({ id, title, color, description }) => (
+					<div key={id}>
+						<h2 style={{ color: color }}>{title}</h2>
+						<p>{description}</p>
+					</div>
+				))}
+			</div>
+		);
+	} else {
+		console.log("ShortList not render");
+	}
+}
+
+function PlanForm({ addProject, projects }) {
 	const [projectInfo, setProjectInfo] = useState({
 		title: "My Project",
 		color: "#E40CF0",
@@ -19,14 +37,13 @@ function PlanForm({ addProject }) {
 		setProjectInfo({ ...projectInfo, [e.target.name]: e.target.value });
 	}
 
+	// event listener for new Project object to be written to an array of ProjectList
 	function handleSubmit(e) {
 		e.preventDefault();
 		console.log(projectInfo);
 		addProject(projectInfo);
 		setProjectInfo({ title: "", color: "#E40CF0", files: "", description: "" });
 	}
-
-	// event listener for new Project object to be written to an array of ProjectRoster
 
 	return (
 		<div>
@@ -103,7 +120,9 @@ function PlanForm({ addProject }) {
 					Submit
 				</Button>
 			</Form>
-			<ProjectList></ProjectList>
+			<div>
+				<ShortList projects={projects} />
+			</div>
 		</div>
 	);
 }

@@ -35,26 +35,24 @@ function App({ callback }) {
 		<div ref={callback}>
 			<NavBar />
 			<h1 className="text-secondary mt-2 ms-3">Welcome to WIPit!</h1>
-			<h5 className="text-info mt-2 ms-5">
-				Let's plan a project! Enter your initial project details and press
-				submit
-			</h5>
+			<h5 className="text-info mt-2 ms-5">Let's plan a project!</h5>
 			<Routes>
 				<Route
 					exact
 					path="/"
 					element={<PlanForm addProject={addProject} projects={projects} />}
-				></Route>
+				/>
 				<Route
 					exact
 					path="/projectlist"
 					element={<ProjectList projects={projects} />}
-				></Route>
+				/>
 				<Route
 					path="/project/:projectId"
 					element={<ProjectDetail projects={projects} />}
 				/>
-				<Route exact path="*" element={<PageNotFound />}></Route>
+
+				<Route exact path="*" element={<PageNotFound />} />
 			</Routes>
 		</div>
 	);

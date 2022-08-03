@@ -5,21 +5,35 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
 
-function ProjectDetail(project) {
-	let { id, title, color, description, files } = project;
+function ProjectDetail({ projects }) {
+	console.log(projects);
+	const { id, title, color, description, files } = {};
 
-	const params = useParams();
+	const instance = useParams();
+	console.log("~~ INSTANCE ~~");
+	console.log(instance);
+
 	let projectId = id;
-	console.log("projectId: ", params.projectId);
-	const projectSku = params.projectId;
 
-	// return <p>you are here :)</p>;
+	console.log("projectId: ", instance.projectId);
 
+	projects.find((project) => {
+		if (projectId === project.id) {
+			console.log(projectId);
+			console.log("match");
+			return true;
+		} else {
+			console.log("no match");
+			return false;
+		}
+	});
+
+	// BEBEH: would it be neater/clearer to break out the project card into its own component?
 	return (
-		<div className="container">
-			<div className="full-project" key={projectId}>
-				<p>Project Home {projectSku}</p>
-				<h3 style={{ color: { color } }}>{title}</h3>
+		<div className="project-card-container m-5">
+			<div className="project-card" key={projectId}>
+				<p>Project Home {instance.projectId}</p>
+				<h3 style={{ color: color }}>{title}</h3>
 				<h5>Pattern/Template Files</h5>
 				<p>{files}</p>
 				<h5>Description</h5>

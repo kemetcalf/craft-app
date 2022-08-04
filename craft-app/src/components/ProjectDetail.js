@@ -7,37 +7,21 @@ import { useParams } from "react-router-dom";
 
 function ProjectDetail({ projects }) {
 	console.log(projects);
-	const { id, title, color, description, files } = {};
 
-	const instance = useParams();
-	console.log("~~ INSTANCE ~~");
-	console.log(instance);
+	const { projectId } = useParams();
 
-	let projectId = id;
+	const currentProject = projects.find((project) => projectId === project.id);
+	const { id, title, color, description, files } = currentProject;
 
-	console.log("projectId: ", instance.projectId);
-
-	projects.find((project) => {
-		if (projectId === project.id) {
-			console.log(projectId);
-			console.log("match");
-			return true;
-		} else {
-			console.log("no match");
-			return false;
-		}
-	});
-
-	// BEBEH: would it be neater/clearer to break out the project card into its own component?
 	return (
 		<div className="project-card-container m-5">
-			<div className="project-card" key={projectId}>
-				<p>Project Home {instance.projectId}</p>
-				<h3 style={{ color: color }}>{title}</h3>
+			<div className="project-card" key={id}>
+				<p>Project Home </p>
+				<h2 style={{ color: color }}>{title}</h2>
 				<h5>Pattern/Template Files</h5>
-				<p>{files}</p>
+				<p className="mx-3">{files}</p>
 				<h5>Description</h5>
-				<p>{description}</p>
+				<p className="mx-3">{description}</p>
 			</div>
 
 			<Col xs={10}>

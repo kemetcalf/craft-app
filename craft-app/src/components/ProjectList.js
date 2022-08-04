@@ -5,7 +5,7 @@ function ProjectList({ projects }) {
 	return (
 		<div>
 			<Accordion defaultActiveKey={["0"]} alwaysOpen>
-				{projects.map(({ id, title, color, description, files }) => (
+				{projects.map(({ id, title, color, description }) => (
 					<Accordion.Item
 						eventKey={id}
 						key={id}
@@ -16,7 +16,7 @@ function ProjectList({ projects }) {
 							<h3 style={{ color: color }}>{title}</h3>
 						</Accordion.Header>
 						<Accordion.Body>
-							<p>{files}</p>
+							{/* <p>{files}</p> */}
 							<p>{description}</p>
 							<Link to={`/project/${id}`}>Details</Link>
 						</Accordion.Body>

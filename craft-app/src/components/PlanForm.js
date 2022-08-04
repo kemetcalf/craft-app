@@ -3,16 +3,20 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ShortList({ projects }) {
 	console.log(projects);
 	if (projects) {
 		console.log("ShortList render");
 		return (
-			<div className="short-list-container">
+			<div className="short-list-container mx-5 mt-2">
 				{projects.map(({ id, title, color, description }) => (
 					<div key={id}>
-						<h2 style={{ color: color }}>{title}</h2>
+						<Link to={`/project/${id}`}>
+							<h2 style={{ color: color }}>{title}</h2>
+						</Link>
+
 						<p>{description}</p>
 					</div>
 				))}
@@ -34,6 +38,7 @@ function PlanForm({ addProject, projects }) {
 
 	// event listener to write project info to a new Project object onSubmit
 	function handleChange(e) {
+		e.preventDefault();
 		setProjectInfo({ ...projectInfo, [e.target.name]: e.target.value });
 	}
 

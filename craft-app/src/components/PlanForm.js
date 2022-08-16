@@ -52,6 +52,10 @@ function PlanForm({ addProject, projects }) {
 
 	return (
 		<div>
+			<div className="home-header ms-3 mt-4">
+				<h5 className="text-info mt-2 ms-3">Got a project?</h5>
+				<h1 className="text-primary mt-2 ms-5 display-2 fw-bold">WIPit!</h1>
+			</div>
 			<Form
 				className="w-75 mx-auto"
 				id="projectFormGrid"

@@ -13,12 +13,22 @@ function App({ callback }) {
 	// Array of projects with state
 	const [projects, updateProjects] = useState([]);
 
-	//addProject handler appends array of projects with new project input; function passed as props to the PlanForm; projects array passed as props to ProjectList
+	//addProject handler appends array of projects with new project input;
+	// function passed as props to the PlanForm;
+	// projects array passed as props to ProjectList
 	const addProject = (projectInfo) => {
 		updateProjects([...projects, { ...projectInfo, id: uuid() }]);
 	};
 
-	console.log(projects);
+	const removeProjectHandler = (id) => {
+		const newProjectList = projects.filter((project) => {
+			return project.id !== id;
+		});
+
+		updateProjects(newProjectList);
+	};
+
+	// console.log(projects);
 
 	useEffect(() => {
 		const retrieveProjects = JSON.parse(
@@ -34,8 +44,6 @@ function App({ callback }) {
 	return (
 		<div ref={callback}>
 			<NavBar />
-			<h1 className="text-secondary mt-2 ms-3">Welcome to WIPit!</h1>
-			<h5 className="text-info mt-2 ms-5">Let's plan a project!</h5>
 			<Routes>
 				<Route
 					exact
@@ -49,7 +57,12 @@ function App({ callback }) {
 				/>
 				<Route
 					path="/project/:projectId"
-					element={<ProjectDetail projects={projects} />}
+					element={
+						<ProjectDetail
+							projects={projects}
+							handledelete={removeProjectHandler}
+						/>
+					}
 				/>
 
 				<Route exact path="*" element={<PageNotFound />} />

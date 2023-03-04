@@ -63,7 +63,7 @@ function PlanForm({ addProject, projects }) {
 			>
 				<Row className="mb-3">
 					<Col xs={6} className="d-sm-grid">
-						<Form.Group controlId="newProjectName">
+						<Form.Group controlId="projectName">
 							<Form.Label>Project Name</Form.Label>
 							<Form.Control
 								type="text"
@@ -92,7 +92,7 @@ function PlanForm({ addProject, projects }) {
 
 				<Row>
 					<Col xs={8}>
-						<Form.Group controlId="projectColorInput" className="mb-3">
+						<Form.Group controlId="projectDescription" className="mb-3">
 							<Form.Label>Description</Form.Label>
 							<Form.Control
 								as="textarea"
@@ -113,8 +113,6 @@ function PlanForm({ addProject, projects }) {
 							<Form.Label>Color picker</Form.Label>
 							<Form.Control
 								type="color"
-								// id="projectColorInput"
-								// projectColorInput to correlate to projectColorTheme in Project object; for visual differentiation between Projects
 								title="Choose your color"
 								className="mx-3"
 								name="color"
